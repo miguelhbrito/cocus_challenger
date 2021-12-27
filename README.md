@@ -1,1 +1,0 @@
-# cocus_challenger
