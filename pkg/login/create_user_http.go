@@ -53,7 +53,7 @@ func (h CreateUserHTTP) Handler() http.HandlerFunc {
 			return
 		}
 
-		if err := mhttp.WriteJsonResponse(w, "", http.StatusCreated); err != nil {
+		if err := mhttp.WriteJsonResponse(w, nil, http.StatusCreated); err != nil {
 			terrors.Handler(w, http.StatusCreated, err)
 			return
 		}
