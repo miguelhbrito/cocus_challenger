@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:9.6
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=asgard
+      - POSTGRES_USER=hel
+      - POSTGRES_PASSWORD=saymyname
+      - MAX_CONNECTIONS=300
+    networks:
+      - local-network
+  
+  keycloak:
+    image: jboss/keycloak
+    environment:
+      DB_VENDOR: H2
+      KEYCLOAK_IMPORT: /tmp/keycloak/valhalla.json
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./configs/keycloak:/tmp/keycloak
+    depends_on:
+      - postgres
+    networks:
+      - local-network
+      
+networks:
+  local-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.200.0.1/16
