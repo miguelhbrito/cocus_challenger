@@ -15,23 +15,28 @@ func NewLoginPostgres() Login {
 }
 
 func (lp LoginPostgres) Save(t entity.LoginEntity) error {
+
 	db := dbconnect.InitDB()
 	defer db.Close()
+
 	sqlStatement := `INSERT INTO login VALUES ($1, $2)`
 	_, err := db.Exec(sqlStatement, t.Username, t.Password)
 	if err != nil {
 		log.Error().Err(err).Msgf("Error to insert a new user into db")
 		return err
 	}
+
 	return nil
 }
 
 func (lp LoginPostgres) Login(l entity.LoginEntity) (entity.LoginEntity, error) {
 	db := dbconnect.InitDB()
 	defer db.Close()
+
 	var lr entity.LoginEntity
 	sqlStatement := `SELECT username, password FROM login WHERE username = $1`
 	result := db.QueryRow(sqlStatement, l.Username)
+
 	err := result.Scan(&lr.Username, &lr.Password)
 	if err != nil {
 		if err == sql.ErrNoRows {
@@ -41,5 +46,6 @@ func (lp LoginPostgres) Login(l entity.LoginEntity) (entity.LoginEntity, error) 
 		log.Error().Err(err).Msgf("Error to get credentials from db, with id %s", l.Username)
 		return entity.LoginEntity{}, err
 	}
+
 	return lr, nil
 }

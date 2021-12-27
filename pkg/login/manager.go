@@ -23,11 +23,14 @@ func NewManager(loginStorage storage.Login, auth auth.Auth) Login {
 }
 
 func (m manager) CreateUser(l entity.LoginEntity) error {
+
+	//Generation new hashedpassword to save into db
 	newPassword, err := m.auth.GenerateHashPassword(l.Password)
 	if err != nil {
 		return errPasswordHash
 	}
 
+	//Saving user into db
 	l.Password = newPassword
 	err = m.loginStorage.Save(l)
 	if err != nil {
