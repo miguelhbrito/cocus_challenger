@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:9.6
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=asgard
+      - POSTGRES_USER=hel
+      - POSTGRES_PASSWORD=saymyname
+      - MAX_CONNECTIONS=300
+    networks:
+      - local-network
+  
+networks:
+  local-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.200.0.1/16
