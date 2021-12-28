@@ -1,9 +1,7 @@
-CREATE TABLE IF NOT EXISTS triangle
-(
-    id CHARACTER varying(36) NOT NULL,
-    side1 INTEGER NOT NULL,
-    side2 INTEGER NOT NULL,
-    side3 INTEGER NOT NULL,
-    type CHARACTER varying(100) NOT NULL,
-    PRIMARY KEY (id)
+CREATE TABLE IF NOT EXISTS "triangle" (
+  "id" varchar PRIMARY KEY,
+  "side1" int NOT NULL,
+  "side2" int NOT NULL,
+  "side3" int NOT NULL,
+  "type" varchar NOT NULL
 );

@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"database/sql"
 	"log"
 	"net/http"
 
@@ -17,29 +18,35 @@ import (
 )
 
 //NewMux with all routes
-func NewMux(log *log.Logger) http.Handler {
+func NewMux(log *log.Logger, db *sql.DB) http.Handler {
 	router := mux.NewRouter()
 
 	//Auth manager
 	authManager := auth.Authorization{}
 
 	//Starting triangle postgres and manager
-	trianglePostgres := triangle.TrianglePostgres{}
+	trianglePostgres := triangle.TrianglePostgres{
+		Db: db,
+	}
 	triangleCore := triangleCore.NewCore(trianglePostgres)
 
 	//Starting login postgres and manager
-	loginPostgres := login.LoginPostgres{}
+	loginPostgres := login.LoginPostgres{
+		Db: db,
+	}
 	loginCore := loginCore.NewCore(loginPostgres, authManager)
 
 	//HANDLERS ----------------
 
 	//Starting triangle handlers
 	handlersTriangle := triangleHandlers.TriangleHandlers{
+		Log:             log,
 		TriangleManager: triangleCore,
 	}
 
 	//Starting login handlers
 	handlersLogin := loginHandlers.LoginHandlers{
+		Log:          log,
 		LoginManager: loginCore,
 	}
 
@@ -54,7 +61,8 @@ func NewMux(log *log.Logger) http.Handler {
 	router.HandleFunc("/triangles", handlersTriangle.List).Methods("GET")
 
 	//Middleware
-	router.Use(middleware.Authorization)
+	mid := middleware.NewMiddleware(log)
+	router.Use(mid.Authorization)
 
 	return router
 }

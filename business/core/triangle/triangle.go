@@ -36,12 +36,12 @@ func (c Core) Create(t triangle.Triangle) (triangle.Triangle, error) {
 	}
 
 	//Save triangle into db
-	err := c.db.Save(t)
+	tr, err := c.db.Save(t)
 	if err != nil {
 		return triangle.Triangle{}, err
 	}
 
-	return t, nil
+	return tr, nil
 }
 
 func (c Core) List() (triangle.Triangles, error) {

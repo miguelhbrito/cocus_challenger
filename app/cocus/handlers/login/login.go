@@ -13,20 +13,18 @@ import (
 )
 
 type LoginHandlers struct {
-	log          *log.Logger
+	Log          *log.Logger
 	LoginManager core.LoginInt
 }
 
 func (h LoginHandlers) CreateUser(w http.ResponseWriter, r *http.Request) {
-	//h.log.Printf("%s %s -> %s", r.Method, r.URL.Path, r.RemoteAddr)
-	//log.Debug().Msg("receive request to create a new user")
-	//h.log.Printf("receive request to create a new user")
+	h.Log.Printf("%s %s -> %s", r.Method, r.URL.Path, r.RemoteAddr)
+	h.Log.Printf("receive request to create a new user")
 
 	var req login.NewLogin
 	err := json.NewDecoder(r.Body).Decode(&req)
 	if err != nil {
-		//log.Error().Err(err).Msg("Error to decode from json")
-		h.log.Printf("Error to decode from json, err %s", err)
+		h.Log.Printf("Error to decode from json, err %s", err)
 		terrors.Handler(w, 500,
 			fmt.Errorf("Error to decode from json, err:%s", err.Error()))
 		return
@@ -34,8 +32,7 @@ func (h LoginHandlers) CreateUser(w http.ResponseWriter, r *http.Request) {
 
 	err = req.Validate()
 	if err != nil {
-		//log.Error().Err(err).Msg("Error to validate fields from login request")
-		h.log.Printf("Error to validate fields from login request, err %s", err)
+		h.Log.Printf("Error to validate fields from login request, err %s", err)
 		terrors.Handler(w, 400, err)
 		return
 	}
@@ -43,8 +40,7 @@ func (h LoginHandlers) CreateUser(w http.ResponseWriter, r *http.Request) {
 	login := req.GenerateEntity()
 	err = h.LoginManager.CreateUser(login)
 	if err != nil {
-		//log.Error().Err(err).Msg("Error to create a new user")
-		h.log.Printf("Error to create a new user, err %s", err)
+		h.Log.Printf("Error to create a new user, err %s", err)
 		terrors.Handler(w, 500, err)
 		return
 	}
@@ -57,15 +53,13 @@ func (h LoginHandlers) CreateUser(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h LoginHandlers) Login(w http.ResponseWriter, r *http.Request) {
-	//h.log.Printf("%s %s -> %s", r.Method, r.URL.Path, r.RemoteAddr)
-	//log.Debug().Msg("receive request to login into system")
-	//h.log.Printf("receive request to login into system")
+	h.Log.Printf("%s %s -> %s", r.Method, r.URL.Path, r.RemoteAddr)
+	h.Log.Printf("receive request to login into system")
 
 	var req login.NewLogin
 	err := json.NewDecoder(r.Body).Decode(&req)
 	if err != nil {
-		//log.Error().Err(err).Msg("Error to decode from json")
-		h.log.Printf("Error to decode from json, err %s", err)
+		h.Log.Printf("Error to decode from json, err %s", err)
 		terrors.Handler(w, http.StatusInternalServerError,
 			fmt.Errorf("Error to decode from json, err:%s", err.Error()))
 		return
@@ -73,8 +67,7 @@ func (h LoginHandlers) Login(w http.ResponseWriter, r *http.Request) {
 
 	err = req.Validate()
 	if err != nil {
-		//log.Error().Err(err).Msg("Error to validate fields from login")
-		h.log.Printf("Error to validate fields from login, err %s", err)
+		h.Log.Printf("Error to validate fields from login, err %s", err)
 		terrors.Handler(w, http.StatusBadRequest, err)
 		return
 	}
@@ -82,8 +75,7 @@ func (h LoginHandlers) Login(w http.ResponseWriter, r *http.Request) {
 	loginEntity := req.GenerateEntity()
 	token, err := h.LoginManager.Login(loginEntity)
 	if err != nil {
-		//log.Error().Err(err).Msg("Error to login into system")
-		//h.log.Printf("Error to login into system, err %s", err)
+		h.Log.Printf("Error to login into system, err %s", err)
 		terrors.Handler(w, http.StatusUnauthorized, err)
 		return
 	}

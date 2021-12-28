@@ -27,8 +27,14 @@ func TestCore_Create(t *testing.T) {
 			name: "Success",
 			fields: fields{
 				db: triangle.TriangleIntCustomMock{
-					SaveMock: func(t triangle.Triangle) error {
-						return nil
+					SaveMock: func(t triangle.Triangle) (triangle.Triangle, error) {
+						return triangle.Triangle{
+							Id:    "1",
+							Side1: 10,
+							Side2: 10,
+							Side3: 10,
+							Type:  "equilateral",
+						}, nil
 					},
 				},
 			},
@@ -53,8 +59,8 @@ func TestCore_Create(t *testing.T) {
 			name: "Error on save triangle",
 			fields: fields{
 				db: triangle.TriangleIntCustomMock{
-					SaveMock: func(t triangle.Triangle) error {
-						return errors.New("some error")
+					SaveMock: func(t triangle.Triangle) (triangle.Triangle, error) {
+						return triangle.Triangle{}, errors.New("some error")
 					},
 				},
 			},
@@ -72,8 +78,13 @@ func TestCore_Create(t *testing.T) {
 			name: "Not a valid triangle",
 			fields: fields{
 				db: triangle.TriangleIntCustomMock{
-					SaveMock: func(t triangle.Triangle) error {
-						return nil
+					SaveMock: func(t triangle.Triangle) (triangle.Triangle, error) {
+						return triangle.Triangle{
+							Id:    "1",
+							Side1: 5,
+							Side2: 3,
+							Side3: 8,
+						}, nil
 					},
 				},
 			},
@@ -92,8 +103,14 @@ func TestCore_Create(t *testing.T) {
 			name: "Isosceles triangle",
 			fields: fields{
 				db: triangle.TriangleIntCustomMock{
-					SaveMock: func(t triangle.Triangle) error {
-						return nil
+					SaveMock: func(t triangle.Triangle) (triangle.Triangle, error) {
+						return triangle.Triangle{
+							Id:    "1",
+							Side1: 10,
+							Side2: 10,
+							Side3: 8,
+							Type:  "isosceles",
+						}, nil
 					},
 				},
 			},
@@ -118,8 +135,14 @@ func TestCore_Create(t *testing.T) {
 			name: "Equilateral triangle",
 			fields: fields{
 				db: triangle.TriangleIntCustomMock{
-					SaveMock: func(t triangle.Triangle) error {
-						return nil
+					SaveMock: func(t triangle.Triangle) (triangle.Triangle, error) {
+						return triangle.Triangle{
+							Id:    "1",
+							Side1: 10,
+							Side2: 10,
+							Side3: 10,
+							Type:  "equilateral",
+						}, nil
 					},
 				},
 			},
@@ -144,8 +167,14 @@ func TestCore_Create(t *testing.T) {
 			name: "Scalene triangle",
 			fields: fields{
 				db: triangle.TriangleIntCustomMock{
-					SaveMock: func(t triangle.Triangle) error {
-						return nil
+					SaveMock: func(t triangle.Triangle) (triangle.Triangle, error) {
+						return triangle.Triangle{
+							Id:    "1",
+							Side1: 10,
+							Side2: 7,
+							Side3: 5,
+							Type:  "scalene",
+						}, nil
 					},
 				},
 			},

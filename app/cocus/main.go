@@ -12,6 +12,7 @@ import (
 
 	"github.com/ardanlabs/conf"
 	"github.com/cocus_challenger_refact/app/cocus/handlers"
+	"github.com/cocus_challenger_refact/platform/config"
 	db "github.com/cocus_challenger_refact/platform/db_connect"
 	"github.com/cocus_challenger_refact/platform/migrations"
 	"github.com/pkg/errors"
@@ -32,6 +33,12 @@ func run() error {
 
 	// ==========================================================================================
 	// Configuration
+
+	config, err := config.LoadConfig("./platform")
+	if err != nil {
+		log.Printf("cannot load config:", err)
+	}
+
 	var cfg struct {
 		Web struct {
 			APIHost         string        `conf:"default:127.0.0.1:5000"`
@@ -53,9 +60,11 @@ func run() error {
 		return errors.Wrap(err, "parsing config")
 	}
 
-	//Starting db connection
-	dbconnection := db.InitDB()
-	//Starting migrations
+	// ==========================================================================================
+	// Start DB connection
+	dbconnection := db.InitDB(config.DBDriver, config.DBSource)
+
+	// Starting migrations
 	migrations.InitMigrations(dbconnection)
 	defer dbconnection.Close()
 
@@ -70,9 +79,10 @@ func run() error {
 	}
 	log.Printf("main : Config :\n%v\n", out)
 
+	cfg.Web.APIHost = config.ServerAddress
 	api := http.Server{
 		Addr:         cfg.Web.APIHost,
-		Handler:      handlers.NewMux(log),
+		Handler:      handlers.NewMux(log, dbconnection),
 		ReadTimeout:  cfg.Web.ReadTimeout,
 		WriteTimeout: cfg.Web.WriteTimeout,
 	}

@@ -2,8 +2,6 @@ package triangle
 
 import (
 	"errors"
-
-	"github.com/google/uuid"
 )
 
 const (
@@ -34,7 +32,6 @@ type Triangles []Triangle
 
 func (t NewTriangle) GenerateEntity() Triangle {
 	return Triangle{
-		Id:    uuid.New().String(),
 		Side1: t.Side1,
 		Side2: t.Side2,
 		Side3: t.Side3,

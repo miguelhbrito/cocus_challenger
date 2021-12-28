@@ -1,24 +1,25 @@
 package triangle
 
 import (
-	dbconnect "github.com/cocus_challenger_refact/platform/db_connect"
+	"database/sql"
+
+	"github.com/google/uuid"
 	"github.com/rs/zerolog/log"
 )
 
 type TriangleInt interface {
-	Save(t Triangle) error
+	Save(t Triangle) (Triangle, error)
 	List() (Triangles, error)
 }
 
-type TrianglePostgres struct{}
+type TrianglePostgres struct {
+	Db *sql.DB
+}
 
-func (tp TrianglePostgres) Save(t Triangle) error {
-
-	db := dbconnect.InitDB()
-	defer db.Close()
+func (tp TrianglePostgres) Save(t Triangle) (Triangle, error) {
 
 	tr := Triangle{
-		Id:    t.Id,
+		Id:    uuid.New().String(),
 		Side1: t.Side1,
 		Side2: t.Side2,
 		Side3: t.Side3,
@@ -26,22 +27,20 @@ func (tp TrianglePostgres) Save(t Triangle) error {
 	}
 
 	sqlStatement := `INSERT INTO triangle VALUES ($1, $2, $3, $4, $5)`
-	_, err := db.Exec(sqlStatement, tr.Id, tr.Side1, tr.Side2, tr.Side3, tr.Type)
+	_, err := tp.Db.Exec(sqlStatement, tr.Id, tr.Side1, tr.Side2, tr.Side3, tr.Type)
 	if err != nil {
 		log.Error().Err(err).Msgf("Error to insert an new triangle into db")
-		return err
+		return Triangle{}, err
 	}
 
-	return nil
+	return tr, nil
 }
 
 func (tp TrianglePostgres) List() (Triangles, error) {
-	db := dbconnect.InitDB()
-	defer db.Close()
 
 	var ts []Triangle
 	sqlStatement := `SELECT id, side1, side2, side3, type FROM triangle`
-	rows, err := db.Query(sqlStatement)
+	rows, err := tp.Db.Query(sqlStatement)
 	if err != nil {
 		log.Error().Err(err).Msg("Error to get all triangles from db")
 		return nil, err
