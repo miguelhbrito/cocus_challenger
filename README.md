@@ -75,7 +75,7 @@ make clean
 <img src="https://github.com/miguelhbrito/cocus_challenger/blob/feature/new-arc/images/postmanLoginToken.png" width="595" height="322">
 
 - Token is included in request's header
-<img src="https://github.com/miguelhbrito/stone_assignment/blob/feature/new-arc/images/cocusTokenHeader.png" width="557" height="313">
+<img src="https://github.com/miguelhbrito/cocus_challenger/blob/feature/new-arc/images/cocusTokenHeader.png" width="557" height="313">
 
 - Now you are able to create and get all triangles from system
 <img src="https://github.com/miguelhbrito/cocus_challenger/blob/feature/new-arc/images/cocusCreateNewTriangle.png" width="617" height="319">
