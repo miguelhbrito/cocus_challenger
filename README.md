@@ -61,9 +61,10 @@ To clean binary
 make clean
 ```
 
-##### `/login/create` POST to create a account
+##### `/login/create` POST to create a new user
 ##### `/login` POST to get login token
-##### `/transfers` POST to create a new triangle
+##### `/triangles` POST to create a new triangle
+##### `/triangles` GET to list all triangles
 
 - First step is create a new user to login into system
 <img src="https://github.com/miguelhbrito/cocus_challenger/blob/feature/new-arc/images/createNewUser.png" width="617" height="325">
