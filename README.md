@@ -27,7 +27,7 @@ To import the collection and environment from repository on folder postman into 
 <img src="https://github.com/miguelhbrito/cocus_challenger/blob/feature/new-arc/images/postmanImportMethod.png" width="786" height="480">
 
 - Choose the correct items to import and press open. Postman will automatically import the items.
-<img src="https://github.com/miguelhbrito/cocus_challenger/blob/feature/new-arc/images/cocusImportPostman.png" width="788" height="480">
+<img src="https://github.com/miguelhbrito/cocus_challenger/blob/feature/new-arc/images/cocusImportPostman.png" width="607" height="309">
 
 ## 🛠 How to use
 
@@ -66,17 +66,17 @@ make clean
 ##### `/transfers` POST to create a new triangle
 
 - First step is create a new user to login into system
-<img src="https://github.com/miguelhbrito/cocus_challenger/blob/feature/new-arc/images/createNewUser.png" width="620" height="365">
+<img src="https://github.com/miguelhbrito/cocus_challenger/blob/feature/new-arc/images/createNewUser.png" width="617" height="325">
 
 - Then login into system to get token auth
-<img src="https://github.com/miguelhbrito/cocus_challenger/blob/feature/new-arc/images/cocusLoginIntoSystem.png" width="620" height="325">
+<img src="https://github.com/miguelhbrito/cocus_challenger/blob/feature/new-arc/images/cocusLoginIntoSystem.png" width="654" height="314">
 
 - Token is automatically saved
 <img src="https://github.com/miguelhbrito/cocus_challenger/blob/feature/new-arc/images/postmanLoginToken.png" width="595" height="322">
 
 - Token is included in request's header
-<img src="https://github.com/miguelhbrito/cocus_challenger/blob/feature/new-arc/images/cocusTokenHeader.png" width="557" height="313">
+<img src="https://github.com/miguelhbrito/cocus_challenger/blob/feature/new-arc/images/cocusTokenHeader.png" width="606" height="318">
 
 - Now you are able to create and get all triangles from system
-<img src="https://github.com/miguelhbrito/cocus_challenger/blob/feature/new-arc/images/cocusCreateNewTriangle.png" width="617" height="319">
+<img src="https://github.com/miguelhbrito/cocus_challenger/blob/feature/new-arc/images/cocusCreateNewTriangle.png" width="603" height="329">
 
