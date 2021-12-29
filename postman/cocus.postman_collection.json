@@ -1,0 +1,159 @@
+{
+	"info": {
+		"_postman_id": "b1185994-fcaa-432c-b273-ba4da3048317",
+		"name": "cocus",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Username\":\"miguel\",\n    \"Password\":\"miguel\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/login/create",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"login",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var response = JSON.parse(responseBody);",
+									"tests[\"token should not be null\"] = response.token !== null;",
+									"",
+									"postman.setEnvironmentVariable(\"token\", response.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Username\":\"miguel\",\n    \"Password\":\"miguel\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/login",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Triangles",
+			"item": [
+				{
+					"name": "Create triangle",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Side1\":2,\n    \"Side2\":3,\n    \"Side3\":2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/triangles",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"triangles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all triangles",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:5000/triangles",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"triangles"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
