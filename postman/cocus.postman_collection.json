@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"Username\":\"miguel\",\n    \"Password\":\"miguel\"\n}",
+							"raw": "{\n    \"Username\":\"cocus\",\n    \"Password\":\"cocus\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -23,11 +23,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:5000/login/create",
+							"raw": "{{server-url}}/login/create",
 							"host": [
-								"localhost"
+								"{{server-url}}"
 							],
-							"port": "5000",
 							"path": [
 								"login",
 								"create"
@@ -59,7 +58,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"Username\":\"miguel\",\n    \"Password\":\"miguel\"\n}",
+							"raw": "{\n    \"Username\":\"cocus\",\n    \"Password\":\"cocus\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -67,11 +66,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:5000/login",
+							"raw": "{{server-url}}/login",
 							"host": [
-								"localhost"
+								"{{server-url}}"
 							],
-							"port": "5000",
 							"path": [
 								"login"
 							]
@@ -105,11 +103,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:5000/triangles",
+							"raw": "{{server-url}}/triangles",
 							"host": [
-								"localhost"
+								"{{server-url}}"
 							],
-							"port": "5000",
 							"path": [
 								"triangles"
 							]
@@ -141,11 +138,10 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:5000/triangles",
+							"raw": "{{server-url}}/triangles",
 							"host": [
-								"localhost"
+								"{{server-url}}"
 							],
-							"port": "5000",
 							"path": [
 								"triangles"
 							]
