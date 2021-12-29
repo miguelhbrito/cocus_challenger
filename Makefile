@@ -3,11 +3,6 @@ GO_VERSION = $(shell go version)
 GO111MODULE=on
 BINARY_NAME=cocus.out
 
-build-simple:
-	go build -o bin/${BINARY_NAME} app/cocus/main.go
-build: # @HELP build the packages
-	chmod +x platform/scripts/build-simple.sh
-	./platform/scripts/build-simple.sh
 run-cocus-gateway-build:
 	go build -o bin/${BINARY_NAME} app/cocus/main.go
 	./bin/${BINARY_NAME}
@@ -16,7 +11,14 @@ run-cocus-gateway:
 	chmod +x platform/scripts/run-server.sh
 	./platform/scripts/run-server.sh
 config-up:
+	echo "starting up configs"
 	docker-compose up -d
+generate-secrets:
+	echo "starting up secrets"
+	chmod +x platform/scripts/vault/postsecret.sh
+	chmod +x platform/scripts/vault/getsecret.sh
+	./platform/scripts/vault/postsecret.sh
+	./platform/scripts/vault/getsecret.sh
 config-down:
 	docker-compose down
 clean:

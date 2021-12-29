@@ -16,7 +16,10 @@ require (
 
 require github.com/spf13/viper v1.10.1
 
+require github.com/jmespath/go-jmespath v0.4.0 // indirect
+
 require (
+	github.com/aws/aws-sdk-go v1.42.25
 	github.com/fsnotify/fsnotify v1.5.1 // indirect
 	github.com/hashicorp/errwrap v1.0.0 // indirect
 	github.com/hashicorp/go-multierror v1.1.0 // indirect
