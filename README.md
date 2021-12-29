@@ -18,16 +18,16 @@ To install jq just follow the steps from website:
 
 To import the collection and environment from repository on folder postman into your postman app please follow the steps:
 - To open the Postman application, click on its icon on the taskbar.
-<img src="https://github.com/miguelhbrito/cocus_challenger/blob/master/images/postmanTaskbar.png" width="47" height="40">
+<img src="https://github.com/miguelhbrito/cocus_challenger/blob/feature/new-arc/images/postmanTaskbar.png" width="47" height="40">
 
 - Click on the file tab and then click import.
-<img src="https://github.com/miguelhbrito/cocus_challenger/blob/master/images/postmanFileImport.png" width="255" height="296">
+<img src="https://github.com/miguelhbrito/cocus_challenger/blob/feature/new-arc/images/postmanFileImport.png" width="255" height="296">
 
 - Choose the import file method and then click on "Upload files".
-<img src="https://github.com/miguelhbrito/cocus_challenger/blob/master/images/postmanImportMethod.png" width="786" height="480">
+<img src="https://github.com/miguelhbrito/cocus_challenger/blob/feature/new-arc/images/postmanImportMethod.png" width="786" height="480">
 
 - Choose the correct items to import and press open. Postman will automatically import the items.
-<img src="https://github.com/miguelhbrito/cocus_challenger/blob/master/images/cocusImportPostman.png" width="788" height="480">
+<img src="https://github.com/miguelhbrito/cocus_challenger/blob/feature/new-arc/images/cocusImportPostman.png" width="788" height="480">
 
 ## 🛠 How to use
 
@@ -58,9 +58,7 @@ make test-cover
 ```
 To clean binary
 ``` powershell
-clean:
-	go clean
-	rm bin/${BINARY_NAME}
+make clean
 ```
 
 ##### `/login/create` POST to create a account
@@ -68,17 +66,17 @@ clean:
 ##### `/transfers` POST to create a new triangle
 
 - First step is create a new user to login into system
-<img src="https://github.com/miguelhbrito/cocus_challenger/blob/master/images/createNewUser.png" width="620" height="365">
+<img src="https://github.com/miguelhbrito/cocus_challenger/blob/feature/new-arc/images/createNewUser.png" width="620" height="365">
 
 - Then login into system to get token auth
-<img src="https://github.com/miguelhbrito/cocus_challenger/blob/master/images/cocusLoginIntoSystem.png" width="620" height="325">
+<img src="https://github.com/miguelhbrito/cocus_challenger/blob/feature/new-arc/images/cocusLoginIntoSystem.png" width="620" height="325">
 
 - Token is automatically saved
-<img src="https://github.com/miguelhbrito/cocus_challenger/blob/master/images/postmanLoginToken.png" width="595" height="322">
+<img src="https://github.com/miguelhbrito/cocus_challenger/blob/feature/new-arc/images/postmanLoginToken.png" width="595" height="322">
 
 - Token is included in request's header
-<img src="https://github.com/miguelhbrito/stone_assignment/blob/master/images/cocusTokenHeader.png" width="557" height="313">
+<img src="https://github.com/miguelhbrito/stone_assignment/blob/feature/new-arc/images/cocusTokenHeader.png" width="557" height="313">
 
 - Now you are able to create and get all triangles from system
-<img src="https://github.com/miguelhbrito/cocus_challenger/blob/master/images/cocusCreateNewTriangle.png" width="617" height="319">
+<img src="https://github.com/miguelhbrito/cocus_challenger/blob/feature/new-arc/images/cocusCreateNewTriangle.png" width="617" height="319">
 
