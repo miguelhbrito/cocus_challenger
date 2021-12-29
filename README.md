@@ -58,9 +58,7 @@ make test-cover
 ```
 To clean binary
 ``` powershell
-clean:
-	go clean
-	rm bin/${BINARY_NAME}
+make clean
 ```
 
 ##### `/login/create` POST to create a account
